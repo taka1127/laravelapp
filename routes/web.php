@@ -69,4 +69,12 @@ Route::get('/', function () {
 // });
 // ---------------------------------------------------------------
 
+// ------------ 2-12 ---------------------------------------------
+// Route::get('hello', 'HelloController@index');
+// Route::get('hello/other', 'HelloController@other');
+// ---------------------------------------------------------------
+ //シングルアクションコントローラのルート記述p42（アクションは要らずコントローラ名のみ）
+// Route::get('hello', 'HelloController');
+
+ //Request Responseのルート記述p53----------------------------------
 Route::get('hello', 'HelloController@index');
