@@ -72,9 +72,22 @@ Route::get('/', function () {
 // ------------ 2-12 ---------------------------------------------
 // Route::get('hello', 'HelloController@index');
 // Route::get('hello/other', 'HelloController@other');
-// ---------------------------------------------------------------
- //シングルアクションコントローラのルート記述p42（アクションは要らずコントローラ名のみ）
+
+//シングルアクションコントローラのルート記述p42（アクションは要らずコントローラ名のみ）
 // Route::get('hello', 'HelloController');
 
  //Request Responseのルート記述p53----------------------------------
-Route::get('hello', 'HelloController@index');
+// Route::get('hello', 'HelloController@index');
+
+
+ //テンプレートエンジンのルート記述p60----------------------------------
+// Route::get('hello', function(){
+//     return view('hello.index'); //viewメソッド -> view('フォルダ名.ファイル名')
+// });
+
+//コントローラでテンプレートを使うp62----------------------------------
+// Route::get('hello/{id?}','HelloController@index');
+
+//---------クエリー文字列の利用p66-------------------------------------------
+Route:: get( 'hello', 'HelloController@index' );
+Route:: post('hello', 'HelloController@post' );

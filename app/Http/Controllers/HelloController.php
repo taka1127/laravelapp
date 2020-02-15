@@ -69,29 +69,90 @@ use Illuminate\Http\Response;
 // }
 // ---------------------------------------------------------------------
 //RequestおよびResponse p52----------------------------------
+// class HelloController extends Controller
+// {
+//     public function index(Request $request, Response $response)
+//     {
+//         $html = <<<EOF
+// <html>
+// <head>
+// <title>Hello/Index</title>
+// <style>
+// body {font-size:16pt; color:red; }
+// h1 {font-size:120pt; text-align:center; color:black; margin:50px; }
+// </style>
+// </head>
+// <body>
+//     <h1>Hello</h1>
+//     <h3>Request</h3>
+//     <pre>{$request}</pre>
+//     <h3>Response</h3>
+//     <pre>{$response}</pre>
+// </body>
+// </html>
+// EOF;
+//         $response->setContent($html);
+//         return $response;
+//     }
+// }
+// --------------------------------------------------------------
+//コントローラでテンプレートを使うp62----------------------------------
+// class HelloController extends Controller
+// {
+//     public function index()
+//     {
+//         return view('hello.index');
+//     }
+// }
+// --------------------------------------------------------------
+//コントローラでテンプレートを使うp63----------------------------------
+// class HelloController extends Controller
+// {
+//     public function index($id='zero')
+//     {
+//         $data = [
+//             'msg'=>'これはコントローラから渡されたメッセージです。',
+//             'id'=>$id
+//         ];
+//         return view('hello.index', $data); //return view('テンプレート' , 配列);
+//     }
+// }
+// --------------------------------------------------------------
+//---------クエリー文字列の利用p66-------------------------------------------
+// class HelloController extends Controller
+// {
+//     public function index(Request $request)
+//     {
+//         $data = [
+//             'msg'=>'これはコントローラから渡されたメッセージです。',
+//             'id'=>$request->id
+//         ];
+//         return view('hello.index', $data);
+//     }
+// }
+
+//---------Bladeの利用p69-------------------------------------------
+// class HelloController extends Controller
+// {
+//     public function index()
+//     {
+//         $data = [
+//             'msg'=>'これはBladeを利用したサンプルです。',
+//         ];
+//         return view('hello.index', $data);
+//     }
+// }
+//---------フォームの送信とCSRF対策p71-------------------------------------------
 class HelloController extends Controller
 {
-    public function index(Request $request, Response $response)
+    public function index()
     {
-        $html = <<<EOF
-<html>
-<head>
-<title>Hello/Index</title>
-<style>
-body {font-size:16pt; color:red; }
-h1 {font-size:120pt; text-align:center; color:black; margin:50px; }
-</style>
-</head>
-<body>
-    <h1>Hello</h1>
-    <h3>Request</h3>
-    <pre>{$request}</pre>
-    <h3>Response</h3>
-    <pre>{$response}</pre>
-</body>
-</html>
-EOF;
-        $response->setContent($html);
-        return $response;
+        
+        return view('hello.index', ['msg'=>'']);
+    }
+    public function post(Request $request)
+    {
+        
+        return view('hello.index', ['msg'=>$request->msg]);
     }
 }
