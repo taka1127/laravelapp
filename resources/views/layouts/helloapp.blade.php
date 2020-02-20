@@ -15,17 +15,17 @@
 </head>
 <body>
   <h1>@yield('title')</h1>
-  @section('menubar') //ページに表示されるコンテンツの区画を定義
+  @section('menubar') {{--ページに表示されるコンテンツの区画を定義--}}
   <h2 class="menutitle">*メニュー </h2>
   <ul>
-    <li>@show</li> //一番土台となるレイアウトで@sectionを用意する場合は@show
+    <li>@show</li> {{--一番土台となるレイアウトでsectionを用意する場合はshow--}}
   </ul>
   <hr size="1">
   <div class="content">
   @yield('content')
   </div>
   <div class="footer">
-  @yield('footer') //配置場所を示す
+  @yield('footer') {{--配置場所を示す--}}
   </div>
 </body>
 </html>

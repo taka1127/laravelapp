@@ -69,8 +69,8 @@
 </body>
 </html> -->
 
-<!-- ---------------継承レイアウト------------------------>  --}}
-@extends('layouts.helloapp')//親レイアウトの継承
+{{--  <!-- ---------------継承レイアウト------------------------>  --}}
+{{--  @extends('layouts.helloapp') 親レイアウトの継承
 
 @section('title','Index')//セクション値にIndexというテキスト値を設定
 @section('menubar')//親セクションの上書き
@@ -84,5 +84,34 @@
 @endsection
 
 @section('footer') //yieldの呼び出し
+copyright 2020 tuyano.
+@endsection  --}}  
+
+{{--  <!-- ---------------コンポーネントp９１　レイアウト用の部品------------------------>  --}}  
+@extends('layouts.helloapp'){{--親レイアウトの継承--}}
+
+@section('title','Index')  {{--セクション値にIndexというテキスト値を設定--}}
+@section('menubar'){{--親セクションの上書き--}}
+  @parent {{--親レイアウトのセクションをはめ込んで表示--}}
+  インデックスページ
+@endsection
+
+@section('content') {{--yieldの呼び出し--}}
+  <p>ここが本文のコンテンツです</p>
+  <p>必要なだけ記述できます</p>
+
+  @component('components.message')
+    @slot('msg_title'){{--呼び出し先の変数にはめ込まれて表示される--}}
+    CAUTION!
+    @endslot
+
+    @slot('msg_content')
+    これはメッセージの表示です。            
+    @endslot
+  @endcomponent
+
+@endsection
+
+@section('footer') {{--yieldの呼び出し--}}
 copyright 2020 tuyano.
 @endsection
