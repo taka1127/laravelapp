@@ -1,4 +1,4 @@
-<html>
+{{--  <!-- <html>
 <head>
     <title>Hello/Index</title>
     <style>
@@ -6,7 +6,7 @@
     h1 { font-size:50pt; text-align:center; color:blue;
           margin:20px 0px -30px 0px; letter-spacing-4pt; }
     </style>
-</head>
+</head> -->
 <!-- ---------------foreach文 ------------------------>
 <!-- <body>     
   <h1>Blade/Index</h1>
@@ -52,7 +52,7 @@
 </html> -->
 
 <!-- ---------------phpディレクティブとwhileディレクティブ ------------------------>
-<body>
+<!-- <body>
   <h1>Blade/Index</h1>
   <p>&#064;whileディレクティブの例</p>
   <ol>
@@ -67,4 +67,22 @@
   @endwhile
   </ol>
 </body>
-</html>
+</html> -->
+
+<!-- ---------------継承レイアウト------------------------>  --}}
+@extends('layouts.helloapp')//親レイアウトの継承
+
+@section('title','Index')//セクション値にIndexというテキスト値を設定
+@section('menubar')//親セクションの上書き
+  @parent //親レイアウトのセクションをはめ込んで表示
+  インデックスページ
+@endsection
+
+@section('content') //yieldの呼び出し
+  <p>ここが本文のコンテンツです</p>
+  <p>必要なだけ記述できます</p>
+@endsection
+
+@section('footer') //yieldの呼び出し
+copyright 2020 tuyano.
+@endsection
