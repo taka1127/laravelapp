@@ -87,21 +87,21 @@
 copyright 2020 tuyano.
 @endsection  --}}  
 
-{{--  <!-- ---------------コンポーネントp９１　レイアウト用の部品------------------------>  --}}  
+{{--  <!-- ---------------コンポーネントp９１　レイアウト用の部品------------------------>  
 @extends('layouts.helloapp'){{--親レイアウトの継承--}}
 
-@section('title','Index')  {{--セクション値にIndexというテキスト値を設定--}}
-@section('menubar'){{--親セクションの上書き--}}
-  @parent {{--親レイアウトのセクションをはめ込んで表示--}}
+{{--  @section('title','Index')  {{--セクション値にIndexというテキスト値を設定
+@section('menubar'){{--親セクションの上書き
+  @parent {{--親レイアウトのセクションをはめ込んで表示
   インデックスページ
 @endsection
 
-@section('content') {{--yieldの呼び出し--}}
+@section('content') {{--yieldの呼び出し
   <p>ここが本文のコンテンツです</p>
   <p>必要なだけ記述できます</p>
 
   @component('components.message')
-    @slot('msg_title'){{--呼び出し先の変数にはめ込まれて表示される--}}
+    @slot('msg_title'){{--呼び出し先の変数にはめ込まれて表示される
     CAUTION!
     @endslot
 
@@ -112,6 +112,34 @@ copyright 2020 tuyano.
 
 @endsection
 
-@section('footer') {{--yieldの呼び出し--}}
+@section('footer') {{--yieldの呼び出し
+copyright 2020 tuyano.
+@endsection  --}}
+{{--  <!-- ---------------サブビュー------------------------>  --}}  
+@extends('layouts.helloapp')
+
+@section('title','Index')  
+@section('menubar')
+  @parent 
+  インデックスページ
+@endsection
+
+@section('content') 
+  <p>ここが本文のコンテンツです</p>
+
+{{--  部分テンプレート部分 引数に連想配列で値の変更も可能  --}}
+  {{--  @include('components.message',['msg_title'=>'OK','msg_content'=>'サブビューです'])  --}}
+
+{{--  <!-- ---------------eachによるコレクションビュー---}}  
+  {{--  <ul>
+  @each('components.item', $data, 'item')
+  </ul>  --}}
+
+{{--  <!-- ---------------ビューコンポーザの利用---}}  
+  <p>Controller<br>'message' = {{ $message }}</p>
+  <p>ViewComposer value<br>'view_message' = {{ $view_message }}</p>
+@endsection
+
+@section('footer') 
 copyright 2020 tuyano.
 @endsection
