@@ -106,5 +106,10 @@ Route::get('/', function () {
 
 //---------グループのミドルウェアp120-------------------------------------------
 // user App\Http\Middleware\HelloMiddleware;
-Route::get('hello', 'HelloController@index')
-    ->middleware('hello');
+// Route::get('hello', 'HelloController@index')
+//     ->middleware('hello');
+
+//---------バリデーションp123-------------------------------------------
+// user App\Http\Middleware\HelloMiddleware;
+Route::get('hello', 'HelloController@index');
+Route::post('hello', 'HelloController@post');
