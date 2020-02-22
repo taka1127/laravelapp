@@ -136,8 +136,18 @@ copyright 2020 tuyano.
   </ul>  --}}
 
 {{--  <!-- ---------------ビューコンポーザの利用---}}  
-  <p>Controller<br>'message' = {{ $message }}</p>
-  <p>ViewComposer value<br>'view_message' = {{ $view_message }}</p>
+  {{--  <p>Controller<br>'message' = {{ $message }}</p>
+  <p>ViewComposer value<br>'view_message' = {{ $view_message }}</p>  --}}
+
+{{--  <!-- ---------------ミドルウェア---}}  
+  {{--  <table>
+  @foreach($data as $item)
+  <tr><th>{{ $item['name'] }}</th><td>{{ $item['mail'] }}</td></tr>
+  @endforeach
+  </table>  --}}
+{{--  <!-- ---------------ミドルウェアp117---}}
+  <p>これは、<middleware>google.com</middleware>へのリンクです。</p>
+  <p>これは、<middleware>yahoo.com</middleware>へのリンクです。</p>
 @endsection
 
 @section('footer') 

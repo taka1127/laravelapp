@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Middleware\HelloMiddleware;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -89,5 +91,20 @@ Route::get('/', function () {
 // Route::get('hello/{id?}','HelloController@index');
 
 //---------クエリー文字列の利用p66-------------------------------------------
-Route:: get( 'hello', 'HelloController@index' );
-Route:: post('hello', 'HelloController@post' );
+// Route:: get( 'hello', 'HelloController@index' );
+// Route:: post('hello', 'HelloController@post' );
+
+//---------ミドルウェアp112-------------------------------------------
+// user App\Http\Middleware\HelloMiddleware;
+// Route::get('hello', 'HelloController@index')
+//     ->middleware(HelloMiddleware::class);
+
+//---------グローバルミドルウェアp118-------------------------------------------
+// user App\Http\Middleware\HelloMiddleware;
+// Route::get('hello', 'HelloController@index');
+//Kernal.phpのprotected $middlewareに記載したことにより->middleware(HelloMiddleware::class);が不要になる
+
+//---------グループのミドルウェアp120-------------------------------------------
+// user App\Http\Middleware\HelloMiddleware;
+Route::get('hello', 'HelloController@index')
+    ->middleware('hello');
