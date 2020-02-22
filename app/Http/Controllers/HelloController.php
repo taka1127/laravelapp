@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Requests\HelloRequest;    //フォームリクエスト     
+use Validator; //バリデータ
 
 // global $head, $style, $body, $end;
 // $head = '<html><head>';
@@ -179,21 +181,107 @@ use Illuminate\Http\Response;
 // }
 
 //--------バリデーションp123-------------------------------------------
+// class HelloController extends Controller
+// {
+//     public function index(Request $request)
+//     {
+//         return view('hello.index',['msg'=>'フォームを入力:']);
+//     }
+
+//     public function post(Request $request)
+//     {
+//         $validate_rule = [
+//             'name' => 'required',
+//             'mail' => 'email',
+//             'age' => 'numeric|between:0,150',
+//         ];
+//         $this->validate($request, $validate_rule);
+//         return view('hello.index',['msg'=>'正しく入力されました！']);
+//     }
+// }
+
+//--------フォームリクエストp142-------------------------------------------
+// class HelloController extends Controller
+// {
+//     public function index(Request $request)
+//     {
+//         return view('hello.index',['msg'=>'フォームを入力:']);
+//     }
+//     public function post(HelloRequest $request)
+//     {
+//         return view('hello.index',['msg'=>'正しく入力されました！']);
+//     }
+// }
+
+//--------バリデータの作成p144-------------------------------------------
+// class HelloController extends Controller
+// {
+//     public function index(Request $request)
+//     {
+//         $validator = Validator::make($request->query(),[
+//             'id' => 'required',
+//             'pass' => 'required',
+//         ]);
+//         if ($validator->fails()){
+//             $msg = 'クエリーに問題があります。';
+//         }else{
+//             $msg = 'ID/PASSを受け付けました。フォームを入力してください。';
+//         }
+//         return view('hello.index',['msg'=>$msg,]);
+//     }
+
+//     public function post(Request $request)
+//     {
+//         $validator = Validator::make($request->all(),[
+//             'name' => 'required',
+//             'mail' => 'email',
+//             'age' => 'numeric|between:0,150',
+//         ]);
+//         if ($validator->fails()){
+//             return redirect('/hello')
+//                             ->withErrors($validator)
+//                             ->withInput();
+//         }
+//         return view('hello.index',['msg'=>'正しく入力されました！']);
+//     }
+// }
+
+//--------エラーメッセージのカスタマイズp148-------------------------------------------
 class HelloController extends Controller
 {
     public function index(Request $request)
     {
-        return view('hello.index',['msg'=>'フォームを入力:']);
+        $validator = Validator::make($request->query(),[
+            'id' => 'required',
+            'pass' => 'required',
+        ]);
+        if ($validator->fails()){
+            $msg = 'クエリーに問題があります。';
+        }else{
+            $msg = 'ID/PASSを受け付けました。フォームを入力してください。';
+        }
+        return view('hello.index',['msg'=>$msg,]);
     }
 
     public function post(Request $request)
     {
-        $validate_rule = [
+        $rules = [
             'name' => 'required',
             'mail' => 'email',
             'age' => 'numeric|between:0,150',
         ];
-        $this->validate($request, $validate_rule);
+        $messages = [
+            'name.required' => '名前は必ず入力してください。',
+            'mail.email' => 'メールアドレスが必要です。',
+            'age.numeric' => '年齢を整数で記入してください',
+            'age.between' => '年齢は0~150の間で入力してください。',
+        ];
+        $validator = Validator::make($request->all(),$rules,$messages);
+        if ($validator->fails()){
+            return redirect('/hello')
+                            ->withErrors($validator)
+                            ->withInput();
+        }
         return view('hello.index',['msg'=>'正しく入力されました！']);
     }
 }
