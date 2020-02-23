@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Myrule;
 
 class HelloRequest extends FormRequest
 {
@@ -40,7 +41,7 @@ class HelloRequest extends FormRequest
             'name' => 'required',
             'mail' => 'email',
             //validateHelloメソッドのルール（hello）を組み込みp155
-            'age' => 'numeric|hello',
+            'age' => ['numeric',new Myrule(5)],
         ];
     }
 // メッセージのカスタマイズ（FormRequestのオーバーライド）p143
