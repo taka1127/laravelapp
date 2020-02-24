@@ -199,7 +199,7 @@ copyright 2020 tuyano.
 @endsection --}}
 
 {{--  <!-- ---------------クッキーを読み書きp163---}}
-  @section('content')
+  {{-- @section('content')
     <p>{{$msg}}</p>
     @if (count($errors) > 0)
     <p>入力に問題があります。再入力してくだいさい。</p>
@@ -217,6 +217,24 @@ copyright 2020 tuyano.
             value="send"></td></tr>
     </table>
     </form>
+  @endsection
+
+@section('footer') 
+copyright 2020 tuyano.
+@endsection --}}
+
+{{--  <!-- ---------------データベースクラスp192---}}
+  @section('content')
+    <table>
+      <tr><th>Name</th><th>Mail</th><th>Age</th></tr>
+      @foreach ($items as $item)
+        <tr>
+          <td>{{$item->name}}</td>
+          <td>{{$item->mail}}</td>
+          <td>{{$item->age}}</td>
+        </tr>
+      @endforeach
+    </table>
   @endsection
 
 @section('footer') 
