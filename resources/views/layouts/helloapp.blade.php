@@ -3,8 +3,8 @@
   <title>@yield('title')</title>
   <style>
   body {font-size:16pt; color:blue; margin: 5px; }
-  h1 { font-size:50pt; text-align:right; color:black;
-        margin:-20px 0px -30px 0px; letter-spacing:-4pt;}
+  h1 { font-size:50pt; text-align:center; color:black;
+        margin:20px 0px 30px 0px; letter-spacing:-4pt;}
   ul { font-size:12pt;}
   hr { margin:25px 100px; border-top:1px dashed #ddd; }
   .menutitle { font-size:14pt; font-weight:10pt; margin: 0px; }

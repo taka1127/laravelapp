@@ -122,6 +122,7 @@ copyright 2020 tuyano.
 @section('menubar')
   @parent 
   インデックスページ
+  <a href="hello/add">新規作成ページ</a>
 @endsection
 
 
@@ -226,9 +227,10 @@ copyright 2020 tuyano.
 {{--  <!-- ---------------データベースクラスp192---}}
   @section('content')
     <table>
-      <tr><th>Name</th><th>Mail</th><th>Age</th></tr>
+      <tr><th>ID</th><th>Name</th><th>Mail</th><th>Age</th></tr>
       @foreach ($items as $item)
         <tr>
+          <td>{{$item->id}}</td>
           <td>{{$item->name}}</td>
           <td>{{$item->mail}}</td>
           <td>{{$item->age}}</td>

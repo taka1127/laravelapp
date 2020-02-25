@@ -12,6 +12,7 @@
 */
 
 use App\Http\Middleware\HelloMiddleware;
+// use Illuminate\Routing\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -113,3 +114,17 @@ Route::get('/', function () {
 // user App\Http\Middleware\HelloMiddleware;
 Route::get('hello', 'HelloController@index');
 Route::post('hello', 'HelloController@post');
+      //DB::insertによるレコード作成p197--addとcreateのメソッド追加
+Route::get('hello/add', 'HelloController@add');
+Route::post('hello/add','HelloController@create');
+
+    //DB::updateによる更新p200--editとupdateのメソッド追加
+Route::get('hello/edit', 'HelloController@edit');
+Route::post('hello/edit', 'HelloController@update');
+
+    //DB::deleteによる削除p202--delとremoveのメソッド追加
+Route::get('hello/del', 'HelloController@del');
+Route::post('hello/del', 'HelloController@remove');
+
+    //クエリビルダ showメソッドの処理p208
+Route::get('hello/show', 'HelloController@show');
