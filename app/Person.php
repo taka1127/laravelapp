@@ -36,7 +36,7 @@ class Person extends Model
     // }
 
     //モデルの修正
-    protected $guranded = array('id');
+    protected $guarded = array('id');
 
     public static $rules = array(
         'name' => 'required',
