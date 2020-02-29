@@ -9,7 +9,8 @@ class BoardController extends Controller
 {
     public function index(Request $request)
     {
-        $items = Board::all();
+        // $items = Board::all();
+        $items = Board::with('person')->get();//p286 n+1問題解消
         return view('board.index', ['items' => $items]);
     }
 
