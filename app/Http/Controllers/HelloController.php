@@ -8,6 +8,8 @@ use App\Http\Requests\HelloRequest;    //フォームリクエスト
 use App\Restdata;
 use Validator; //バリデータ
 use Illuminate\Support\Facades\DB; 
+use App\Person;//ページネーションp313
+use Illuminate\Support\Facades\Auth; //p329
 
 // global $head, $style, $body, $end;
 // $head = '<html><head>';
@@ -468,9 +470,16 @@ class HelloController extends Controller
 {
     public function index(Request $request)
     {
-        $items = DB::table('people')
-        ->orderBy('age','asc')->get();
-        return view('hello.index', ['items'=> $items]);
+        $user = Auth::user();
+        //モデルクラスの場合
+        $sort = $request->sort;
+        $items = Person::orderBy($sort, 'asc')->paginate(5);
+        $param = ['items' => $items, 'sort'=>$sort, 'user' =>$user ];
+        //DBクラスの場合
+        // $sort = $request->sort;
+        // $items = DB::table('people')->orderBy($sort, 'asc')->simplePaginate(5);
+        // $param = ['items' => $items, 'sort'=>$sort ];
+        return view('hello.index', $param);
     }
 
     public function show(Request $request)
@@ -536,7 +545,7 @@ class HelloController extends Controller
     {
         return view('hello.rest');
     }
-
+    // @codingStandardsIgnoreStart
     public function ses_get(Request $request)
     {
         $sesdata = $request->session()->get('msg');
@@ -549,4 +558,5 @@ class HelloController extends Controller
         $request->session()->put('msg',$msg);
         return redirect('hello/session');
     }
+    // @codingStandardsIgnoreEnd
 }
