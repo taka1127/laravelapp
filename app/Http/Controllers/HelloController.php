@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\HelloRequest;    //フォームリクエスト     
+use App\Restdata;
 use Validator; //バリデータ
 use Illuminate\Support\Facades\DB; 
 
@@ -530,5 +531,22 @@ class HelloController extends Controller
         DB::table('people')
             ->where('id',$request->id)->delete();
         return redirect('/hello');
+    }
+    public function rest(Request $request)
+    {
+        return view('hello.rest');
+    }
+
+    public function ses_get(Request $request)
+    {
+        $sesdata = $request->session()->get('msg');
+        return view('hello.session', ['session_data'=>$sesdata]);
+    }
+
+    public function ses_put(Request $request)
+    {
+        $msg = $request->input;
+        $request->session()->put('msg',$msg);
+        return redirect('hello/session');
     }
 }
